@@ -1,0 +1,61 @@
+import java.awt.Color;
+
+public class SlotMachineMain {
+
+	public static void main(String[] args) {
+		EZ.initialize(1920, 1800); // inititalized a screen of 1920x1800
+		EZ.setBackgroundColor(new Color(51, 204, 51)); // set color to green
+		EZImage Half = EZ.addImage("Half.png", 200, 600);
+		EZImage Min = EZ.addImage("Min.png", 100, 600);
+		EZImage Max = EZ.addImage("Max.png", 300, 600);
+		EZImage Quit = EZ.addImage("Quit.png", 100, 100);
+		EZImage Spin = EZ.addImage("Spin.png", 900, 600);
+
+		EZSound SMin = EZ.addSound("SMin.wav");
+		EZSound SHalf = EZ.addSound("SHalf.wav");
+		EZSound SMax = EZ.addSound("SMax.Wav");
+		EZSound SSpin = EZ.addSound("SSpin.wav");
+		int clickX = 0;
+		int clickY = 0;
+		while (true) {
+			// Get the mouseÊ»s X and Y position
+			clickX = EZInteraction.getXMouse();
+			clickY = EZInteraction.getYMouse();
+			if (EZInteraction.wasMouseLeftButtonPressed()) {
+
+				// If click X and clickY is on Quit button then..
+				if (Quit.isPointInElement(clickX, clickY)) {
+					// Quits the game
+					System.exit(0);
+				}
+
+				// if click X and clickY is on the min button then...
+				if (Min.isPointInElement(clickX, clickY)) {
+
+					SMin.play();
+				}
+
+				// if click X and clickY is on the min button then...
+				if (Half.isPointInElement(clickX, clickY)) {
+
+					SHalf.play();
+				}
+
+				// if click X and clickY is on the min button then...
+				if (Max.isPointInElement(clickX, clickY)) {
+
+					SMax.play();
+				}
+
+				if (Spin.isPointInElement(clickX, clickY)) {
+
+					SSpin.play();
+				}
+			}
+
+			// Make sure to do this or else the graphics wonÊ»t refresh
+			EZ.refreshScreen();
+		}
+	}
+
+}
